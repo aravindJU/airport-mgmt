@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Staff Table</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h2>Staff Table</h2>
+    <form method="post" class="mb-3">
+        <input type="number" name="StaffID" placeholder="StaffID" required>
+        <input type="text" name="FirstName" maxlength="30" placeholder="FirstName" required>
+        <input type="text" name="LastName" maxlength="30" placeholder="LastName" required>
+        <input type="text" name="Role" maxlength="10" placeholder="Role" required>
+        <input type="text" name="ContactNo" maxlength="10" placeholder="ContactNo" required>
+        <input type="email" name="Email" maxlength="30" placeholder="Email" required>
+        <input type="number" name="AirlineID" placeholder="AirlineID" required>
+        <button name="add" class="btn btn-success" type="submit">Add</button>
+    </form>
+    <form method="post">
+        <button name="delete" class="btn btn-danger" type="submit">Delete Last</button>
+    </form>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th><th>FirstName</th><th>LastName</th><th>Role</th><th>ContactNo</th><th>Email</th><th>AirlineID</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for s in staff %}
+        <tr>
+            <td>{{ s['StaffID'] }}</td>
+            <td>{{ s['FirstName'] }}</td>
+            <td>{{ s['LastName'] }}</td>
+            <td>{{ s['Role'] }}</td>
+            <td>{{ s['ContactNo'] }}</td>
+            <td>{{ s['Email'] }}</td>
+            <td>{{ s['AirlineID'] }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('home') }}" class="btn btn-primary mt-2">Back to Home</a>
+</div>
+</body>
+</html>

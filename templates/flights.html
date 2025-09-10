@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flights Table</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h2>Flights Table</h2>
+    <form method="post" class="mb-3">
+        <input type="number" name="FlightID" placeholder="FlightID" required>
+        <input type="number" name="AirlineID" placeholder="AirlineID" required>
+        <input type="text" name="Airline" maxlength="30" placeholder="Airline" required>
+        <input type="number" name="FlightNo" placeholder="FlightNo" required>
+        <input type="text" name="Departure" maxlength="30" placeholder="Departure" required>
+        <input type="text" name="Arrival" maxlength="30" placeholder="Arrival" required>
+        <input type="time" name="DeptTime" placeholder="DeptTime" required>
+        <input type="time" name="ArrTime" placeholder="ArrTime" required>
+        <input type="text" name="Status" maxlength="10" placeholder="Status" required>
+        <button name="add" class="btn btn-success" type="submit">Add</button>
+        <button name="delete" class="btn btn-danger" type="submit">Delete</button>
+    </form>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th><th>AirlineID</th><th>Airline</th><th>FlightNo</th><th>Departure</th><th>Arrival</th><th>DeptTime</th><th>ArrTime</th><th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for flight in flights %}
+        <tr>
+            <td>{{ flight['FlightID'] }}</td>
+            <td>{{ flight['AirlineID'] }}</td>
+            <td>{{ flight['Airline'] }}</td>
+            <td>{{ flight['FlightNo'] }}</td>
+            <td>{{ flight['Departure'] }}</td>
+            <td>{{ flight['Arrival'] }}</td>
+            <td>{{ flight['DeptTime'] }}</td>
+            <td>{{ flight['ArrTime'] }}</td>
+            <td>{{ flight['Status'] }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('home') }}" class="btn btn-primary mt-2">Back to Home</a>
+</div>
+</body>
+</html>

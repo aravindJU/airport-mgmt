@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AIRPORT DB</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('airlines') }}">Airlines</a>
+        <a href="{{ url_for('flights') }}">Flights</a>
+        <a href="{{ url_for('passengers') }}">Passengers</a>
+        <a href="{{ url_for('bookings') }}">Bookings</a>
+        <a href="{{ url_for('staff') }}">Staff</a>
+    </nav>
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+</html>
