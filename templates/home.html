@@ -7,12 +7,31 @@
 <body>
 <div class="container mt-4">
     <h1 class="mb-4">Airport Database Management</h1>
+
+    <!-- Top right buttons -->
+    <div class="float-end mb-3">
+        {% if session['username'] %}
+            <span class="me-2">Hello, {{ session['username'] }}!</span>
+            <a href="{{ url_for('change_password') }}" class="btn btn-warning me-2">Change Password</a>
+            <a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a>
+        {% else %}
+            <a href="{{ url_for('login') }}" class="btn btn-primary me-2">Login</a>
+            <a href="{{ url_for('register') }}" class="btn btn-success">Register</a>
+        {% endif %}
+    </div>
+
+    <!-- Navigation tabs -->
     <ul class="nav nav-tabs">
-        <li class="nav-item"><a class="nav-link" href="{{ url_for('airline') }}">Airline</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ url_for('flights') }}">Flights</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ url_for('passengers') }}">Passengers</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ url_for('bookings') }}">Bookings</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ url_for('staff') }}">Staff</a></li>
+        {% if session['role'] == 'admin' %}
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('airline') }}">Airline</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('flights') }}">Flights</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('passengers') }}">Passengers</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('bookings') }}">Bookings</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('staff') }}">Staff</a></li>
+        {% elif session['role'] == 'user' %}
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('passengers') }}">Passengers</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('bookings') }}">Bookings</a></li>
+        {% endif %}
     </ul>
 </div>
 </body>
